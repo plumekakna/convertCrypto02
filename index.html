@@ -1,0 +1,31 @@
+<html>
+<script>
+
+var apikey = {
+    key:'0b2dfe70-ed0b-4fa1-a33a-99b8d3d9cead'
+}
+    
+request('GET','https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=' + apikey.key)
+.then((r1) => {
+    var x1 = JSON.parse(r1.target.responseText);
+    var x2 = JSON.parse(x1.data[1].quote.USD.price);
+    console.log(x1);
+    var x3 = x2 * 33.5;
+    var x4 = 4000 / x3;
+    //console.log(x3);
+    //console.log(x4);
+}).catch(err => {
+    console.log(err);
+})  
+    
+function request(method, url) {
+        return new Promise(function (resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            xhr.onload = resolve;
+            xhr.onerror = reject;
+            xhr.send();
+        });
+}
+</script>
+</html>
